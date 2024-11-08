@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<main>
+    <div class="container py-3">
+        <h1>01 - dasharray & dashoffset</h1>
+        <p class="lead">As propriedades stroke-dasharray e stroke-dashoffset são utilizadas em SVG para criar efeitos de
+            traço em
+            contornos (stroke) de elementos gráficos, como linhas e formas.</p>
+        <div class="vstack gap-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>stroke-dasharray</h2>
+                    <p>Define o padrão dos traços e espaços ao longo de um contorno. É como se você pudesse dizer ao SVG
+                        para
+                        desenhar uma linha não contínua, mas com segmentos e intervalos.</p>
+                    <p>
+                        <strong>Exemplo:</strong> <code>stroke-dasharray: 30, 50;</code> significa que a linha terá
+                        segmentos
+                        de 5
+                        unidades de comprimento seguidos por espaços de 10 unidades.
+                    </p>
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle r="50" stroke-dasharray="30 50" cx="50%" cy="50%" fill="transparent"
+                                stroke="black"></circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2>stroke-dashoffset</h2>
+                    <p>Controla a posição inicial do padrão de traços definido pelo stroke-dasharray</p>
+                    <p>
+                        <strong>Exemplo:</strong> <code>stroke-dashoffset: 20;</code> desloca o padrão de traço em
+                        20
+                        unidades ao longo
+                        do caminho, movendo a posição inicial do padrão.
+                    </p>
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle r="50" stroke-dasharray="30 50" stroke-dashoffset="20" cx="50%" cy="50%"
+                                fill="transparent"
+                                stroke="black"></circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2>Animação de Loading</h2>
+                    <ul class="vstack gap-3">
+                        <li>
+                            <p>Passo 1: Utilize o <code>stroke-dasharray</code> para criar um efeito de "desenho" no
+                                elemento e o <code>stroke-dashoffset</code> para manter o segmento inicial do traço
+                                sendo exibido
+                            </p>
+                            <pre><code>
+@keyframes {
+    from {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 0 calc(pi * 2 * 50px);
+        // calc(pi * 2 * 50px) irá calcular o comprimento da circunferencia criada pelo svg.
+        // 50px = raio da circunferência
+    }
+    to {
+        stroke-dashoffset: 0;
+        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+    }
+}
+                                    </code></pre>
+                            <svg width="100" height="100" viewBox="0 0 101 101">
+                                <style>
+                                    #circle-1 {
+                                        animation: 5s loading-animation-1 ease-in-out infinite;
+                                    }
+
+                                    @keyframes loading-animation-1 {
+                                        from {
+                                            stroke-dashoffset: 0;
+                                            stroke-dasharray: 0 calc(pi * 2 * 50px);
+                                        }
+                                        to {
+                                            stroke-dashoffset: 0;
+                                            stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                        }
+                                    }
+                                </style>
+                                <circle id="circle-1" r="50" cx="50%" cy="50%" fill="transparent"
+                                        stroke="black"></circle>
+                            </svg>
+                        </li>
+                        <li>
+                            <p>Passo 2: Utilize o <code>stroke-dashoffset</code> novamente para criar um efeito que
+                                remova o desenho criado inversamente
+                            </p>
+                            <pre><code>
+@keyframes {
+    from {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 0 calc(pi * 2 * 50px);
+        // calc(pi * 2 * 50px) irá calcular o comprimento da circunferencia criada pelo svg.
+        // 50px = raio da circunferência
+    }
+    50% {
+        stroke-dashoffset: 0;
+        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+    }
+    50% {
+        stroke-dashoffset: calc(pi * -2 * 50px);
+        // Número negativo para que o efeito se mova na direção contrária
+        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+    }
+}
+                                    </code></pre>
+                            <svg width="100" height="100" viewBox="0 0 101 101">
+                                <style>
+                                    #circle-2 {
+                                        animation: 5s loading-animation-2 ease-in-out infinite;
+                                        transform-origin: center center;
+                                        transform-box: content-box;
+                                        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                        stroke-dashoffset: calc(pi * 2 * 50px);
+                                    }
+
+                                    @keyframes loading-animation-2 {
+                                        from {
+                                            stroke-dashoffset: 0;
+                                            stroke-dasharray: 0 calc(pi * 2 * 50px);
+                                        }
+                                        50% {
+                                            stroke-dashoffset: 0;
+                                            stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                        }
+                                        to {
+                                            stroke-dashoffset: calc(pi * -2 * 50px);
+                                            stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                        }
+                                    }
+                                </style>
+                                <circle id="circle-2" r="50" cx="50%" cy="50%" fill="transparent"
+                                        stroke="black"></circle>
+                            </svg>
+                        </li>
+                        <li>
+                            <p>Passo 3: Rotacione o elemento
+                            </p>
+                            <pre><code>
+@keyframes {
+    from {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 0 calc(pi * 2 * 50px);
+        // calc(pi * 2 * 50px) irá calcular o comprimento da circunferencia criada pelo svg.
+        // 50px = raio da circunferência
+        transform: rotate(0deg);
+    }
+    50% {
+        stroke-dashoffset: 0;
+        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+    }
+    50% {
+        stroke-dashoffset: calc(pi * -2 * 50px);
+        // Número negativo para que o efeito se mova na direção contrária
+        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+        transform: rotate(360deg);
+    }
+}
+                                    </code></pre>
+                            <svg width="100" height="100" viewBox="0 0 101 101">
+                                <style>
+                                    #circle-3 {
+                                        animation: 5s loading-animation-3 ease-in-out infinite;
+                                        transform-origin: center center;
+                                        transform-box: content-box;
+                                        stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                        stroke-dashoffset: calc(pi * 2 * 50px);
+                                    }
+
+                                    @keyframes loading-animation-3 {
+                                        from {
+                                            stroke-dashoffset: 0;
+                                            stroke-dasharray: 0 calc(pi * 2 * 50px);
+                                            transform: rotate(0deg);
+                                        }
+                                        50% {
+                                            stroke-dashoffset: 0;
+                                            stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                        }
+                                        to {
+                                            stroke-dashoffset: calc(pi * -2 * 50px);
+                                            stroke-dasharray: calc(pi * 2 * 50px) calc(pi * 2 * 50px);
+                                            transform: rotate(360deg);
+                                        }
+                                    }
+                                </style>
+                                <circle id="circle-3" r="50" cx="50%" cy="50%" fill="transparent"
+                                        stroke="black"></circle>
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

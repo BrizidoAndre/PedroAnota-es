@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <div class="container py-3">
+        <h1>01 - Slider CSS</h1>
+        <p class="lead">Artigo explicativo sobre a criação de um slider funcional com CSS & JS (opcional)</p>
+        <div class="vstack gap-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Estrutura HTML</h2>
+                    <p>Para a criação desse projeto o HTML será composto por três partes: <strong>container</strong>,
+                        <strong>wrapper</strong> e <strong>slides</strong></p>
+                    <pre>
+                        <code>
+&lt;div class="container"&gt;
+    &lt;div class="wrapper"&gt;
+        &lt;div class="slide"&gt;&lt;/div&gt;
+        &lt;div class="slide"&gt;&lt;/div&gt;
+        &lt;div class="slide"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2>CSS</h2>
+                    <p>Estilização do componente</p>
+                    <ul class="vstack gap-5">
+                        <li>
+                            <p>Passo 1: Defina o tamanho do container & adicione uma cor para visualizar melhor
+                                (opcional). Além disso, remova a exibição de elementos filhos que ultrapassem seus
+                                limites (<code>overflow: hidden</code>)</p>
+                            <pre>
+                        <code>
+.container{
+    width: 100%;
+    height: 400px;
+    background: coral;
+    overflow: hidden;
+}</code>
+                    </pre>
+                            <div class="container-ex">
+
+                            </div>
+                        </li>
+                        <li>
+                            <p>Passo 2: Defina o tamanho do wrapper para possuir a altura do container e a largura do
+                                container multiplicada pelo número de slides. Além disso, defina a margem para 0 (<code>margin:
+                                    0;</code>).</p>
+                            <pre>
+                        <code>
+.wrapper-ex {
+    height: 100%;
+    width: calc(100% * 3);
+    display: flex;
+}</code>
+                    </pre>
+                        </li>
+                        <li>
+                            <p>Passo 3: Adicione os slides com o tamanho total do <strong>container</strong> (altura e
+                                largura). Estilize as imagens para encaixarem no tamanho de slide (opcional, depende do
+                                que será exibido em cada slide)</p>
+                            <pre>
+                        <code>
+.slide {
+    height: 100%;
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}</code>
+                    </pre>
+                            <div class="container-ex">
+                                <div class="wrapper-ex">
+                                    <div class="slide-ex">
+                                        <img src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2VtfGVufDB8fDB8fHww"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+                                             alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Passo 4 (opcional): Crie uma animação que manipule o slider. A propriedade <code>margin-left</code>
+                                negativa serve para criar o efeito de slide</p>
+                            <pre>
+                        <code>
+.animated-wrapper {
+    animation: ease-in-out 10s infinite alternate animated-wrapper;
+}
+
+@keyframes animated-wrapper {
+    from {
+        margin-left: 0;
+    }
+    20% {
+        margin-left: 0;
+    }
+    30%{
+        margin-left: -100%;
+    }
+    70% {
+        margin-left: -100%;
+    }
+    80% {
+        margin-left: -200%;
+    }
+    to {
+        margin-left: -200%;
+    }
+}</code>
+                    </pre>
+                            <div class="container-ex">
+                                <div class="wrapper-ex animated-wrapper">
+                                    <div class="slide-ex">
+                                        <img src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2VtfGVufDB8fDB8fHww"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+                                             alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2>Tornando funcional - CSS</h2>
+                    <p>Tornando-o um slider dinamicamente navegável.</p>
+                    <ul class="vstack gap-5">
+                        <li>
+                            <p>Passo 1: Crie elementos "checkbox" </p>
+                            <pre>
+                        <code>
+&lt;div class="container"&gt;
+    &lt;div class="wrapper"&gt;...&lt;/div&gt;
+    &lt;div class="controllers"&gt;
+        &lt;label id="controller-1" class="controller"&gt;
+            &lt;input <strong>checked</strong> type="radio" name="slider-selector" /&gt;
+        &lt;/label&gt;
+        &lt;label id="controller-2" class="controller"&gt;
+            &lt;input type="radio" name="slider-selector" /&gt;
+        &lt;/label&gt;
+        &lt;label id="controller-3" class="controller"&gt;
+            &lt;input type="radio" name="slider-selector" /&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+                    </pre>
+                        </li>
+                        <li>
+                            <p>Passo 2: Customize a exibição do slider de acordo com o elemento selecionado e adicione
+                                <code>position: relative;</code> ao container para garantir que o próximo passo funcione
+                                corretamente. Além disso, adicione uma duração de transição no wrapper (<code>transition-duration:
+                                    1s;</code>)
+                            </p>
+                            <pre>
+                        <code>
+.container{
+    position: relative;
+}
+.checkbox-wrapper{
+    --current-index: 0;
+    transition-duration: 1s;
+    margin-left: calc(-100% * var(--current-index));
+}
+
+.container:has(#controller-1 input:checked) .checkbox-wrapper {
+    --current-index: 0;
+}
+
+.container:has(#controller-2 input:checked) .checkbox-wrapper {
+    --current-index: 1;
+}
+
+.container:has(#controller-3 input:checked) .checkbox-wrapper {
+    --current-index: 2;
+}
+                        </code>
+                    </pre>
+                        </li>
+                        <li>
+                            <p>Passo 3: Estilize os elementos checkbox para se manterem na tela e parecerem mais com
+                                seletores e voila!</p>
+                            <pre>
+                        <code>
+.controllers{
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: .25rem;
+    gap: 2rem;
+}
+
+.controller{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+
+    input {
+        display: none;
+    }
+}
+
+.controller:has(input:checked){
+    background: white;
+}
+                        </code>
+                    </pre>
+                            <div class="container-ex">
+                                <div class="wrapper-ex checkbox-wrapper">
+                                    <div class="slide-ex">
+                                        <img src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2VtfGVufDB8fDB8fHww"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+                                             alt=""/>
+                                    </div>
+                                </div>
+                                <div class="controllers">
+                                    <label id="controller-1" class="controller">
+                                        <input checked type="radio" name="slider-selector"/>
+                                    </label>
+                                    <label id="controller-2" class="controller">
+                                        <input type="radio" name="slider-selector"/>
+                                    </label>
+                                    <label id="controller-3" class="controller">
+                                        <input type="radio" name="slider-selector"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2>Tornando funcional - JS</h2>
+                    <p>Tornando-o um slider dinamicamente navegável.</p>
+                    <ul class="vstack gap-5">
+                        <li>
+                            <p>Passo 1: Crie botões para a navegação entre slides (next e prev)</p>
+                            <pre>
+                        <code>
+&lt;div class="container"&gt;
+    &lt;div class="wrapper"&gt;...&lt;/div&gt;
+    &lt;div class="action-btns"&gt;
+        &lt;button&gt;Previous&lt;/button&gt;
+        &lt;button&gt;Next&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+                    </pre>
+                        </li>
+                        <li>
+                            <p>Passo 2: Adicione uma variável CSS que permita alterar a margem do wrapper dinamicamente
+                                & um tempo de transição (<code>transition-duration: 1s;</code>). Além disso, adicione o
+                                <code>position: relative;</code> ao container
+                            </p>
+                            <pre>
+                        <code>
+.container{
+    position: relative;
+}
+.checkbox-wrapper{
+    --current-index: 0;
+    transition-duration: 1s;
+    margin-left: calc(-100% * var(--current-index));
+}
+                        </code>
+                    </pre>
+                        </li>
+                        <li>
+                            <p>Passo 3: Estilize os botões para aparecerem na tela e terem um efeito de desabilitado quando estiverem nesse estado</p>
+                            <pre>
+                        <code>
+.action-btns {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: .5rem;
+    gap: 2rem;
+
+    button{
+        padding: 0.5rem 1rem;
+        background: darkblue;
+        color: white;
+        border: none;
+        border-radius: .75rem;
+    }
+
+    button:disabled {
+        opacity: .75;
+    }
+}
+                        </code>
+                    </pre>
+                            <div class="container-ex">
+                                <div class="wrapper-ex jscontrolled-wrapper">
+                                    <div class="slide-ex">
+                                        <img src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2VtfGVufDB8fDB8fHww"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+                                             alt=""/>
+                                    </div>
+                                </div>
+                                <div class="action-btns">
+                                    <button>Previous</button>
+                                    <button>Next</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>Passo 4: Adicione o seguinte código javascript <strong>(seguindo as instruções dos comentários)</strong> para a manipulação de slides e voila!</p>
+                            <pre>
+                        <code>
+// Adicione um id ao wrapper para referenciar ele e seus slides
+const wrapper = document.getElementById('wrapper-1')
+const slides = document.querySelectorAll("#wrapper-1 .slide-ex")
+
+// Adicione um id aos botões de ação
+const prevBtn = document.getElementById('action-prev-1')
+const nextBtn = document.getElementById('action-next-1')
+
+// Adicione uma função que retorne o index atual do slide
+function getIndex() {
+    return isNaN(parseInt(wrapper.style.getPropertyValue('--current-index'))) ? 0 : parseInt(wrapper.style.getPropertyValue('--current-index'))
+}
+
+// Adicione uma função que realize as atividades necessárias ao alterar o slide atual (Desabilitar botões caso preciso & mudar o valor da variável CSS)
+function changeIndex(index) {
+    console.log(slides.length)
+    if (index > 0) {
+        prevBtn.removeAttribute('disabled')
+    } else {
+        prevBtn.setAttribute('disabled', 'disabled')
+    }
+    if (index < slides.length - 1) {
+        nextBtn.removeAttribute('disabled')
+    } else {
+        nextBtn.setAttribute('disabled', 'disabled')
+    }
+
+    wrapper.style.setProperty('--current-index', index)
+}
+
+// Defina um valor inicial e chame a função
+changeIndex(getIndex())
+
+// Adicione eventos js para a alteração do index atual
+nextBtn.addEventListener('click', () => {
+    changeIndex(getIndex() + 1)
+})
+
+prevBtn.addEventListener('click', () => {
+    changeIndex(getIndex() - 1)
+})
+                        </code>
+                    </pre>
+                            <div class="container-ex">
+                                <div id="wrapper-1" class="wrapper-ex jscontrolled-wrapper">
+                                    <div class="slide-ex">
+                                        <img src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2VtfGVufDB8fDB8fHww"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="slide-ex">
+                                        <img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+                                             alt=""/>
+                                    </div>
+                                </div>
+                                <div class="action-btns">
+                                    <button id="action-prev-1">Previous</button>
+                                    <button id="action-next-1">Next</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2>Tornando funcional - NEXT LEVEL</h2>
+                    <p>Mantenha ambos os controladores (paginado e botões de next e previous) & adicione a funcionalidade de loop</p>
+                    <ul class="vstack gap-5">
+                        <li>
+                            <p>Passo 1: Crie botões para a navegação entre slides (next e prev)</p>
+                            <pre>
+                        <code>
+&lt;div class="container"&gt;
+    &lt;div class="wrapper"&gt;...&lt;/div&gt;
+    &lt;div class="action-btns"&gt;
+        &lt;button&gt;Previous&lt;/button&gt;
+        &lt;button&gt;Next&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+                    </pre>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

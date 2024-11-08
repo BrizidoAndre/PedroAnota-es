@@ -1,0 +1,146 @@
+/**
+GENERAL
+ */
+.container-ex {
+    width: 100%;
+    height: 400px;
+    background: coral;
+    overflow: hidden;
+}
+
+.wrapper-ex {
+    height: 100%;
+    width: calc(100% * 3);
+    display: flex;
+}
+
+/**
+01 - ANIMATED WRAPPER
+ */
+
+.animated-wrapper {
+    animation: ease-in-out 10s infinite alternate animated-wrapper;
+}
+
+.slide-ex {
+    height: 100%;
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@keyframes animated-wrapper {
+    from {
+        margin-left: 0;
+    }
+    20% {
+        margin-left: 0;
+    }
+    30% {
+        margin-left: -100%;
+    }
+    70% {
+        margin-left: -100%;
+    }
+    80% {
+        margin-left: -200%;
+    }
+    to {
+        margin-left: -200%;
+    }
+}
+
+/**
+CHECKBOX WRAPPER
+ */
+.container-ex {
+    position: relative;
+}
+
+.checkbox-wrapper {
+    --current-index: 0;
+    transition-duration: 1s;
+    margin-left: calc(-100% * var(--current-index));
+}
+
+.container-ex:has(#controller-1 input:checked) .checkbox-wrapper {
+    --current-index: 0;
+}
+
+.container-ex:has(#controller-2 input:checked) .checkbox-wrapper {
+    --current-index: 1;
+}
+
+.container-ex:has(#controller-3 input:checked) .checkbox-wrapper {
+    --current-index: 2;
+}
+
+.controllers {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.25rem;
+    gap: 2rem;
+}
+
+.controller {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+
+    input {
+        display: none;
+    }
+}
+
+.controller:has(input:checked) {
+    background: white;
+}
+
+/**
+JS CONTROLLED WRAPPER
+ */
+
+.container {
+    position: relative;
+}
+
+.jscontrolled-wrapper {
+    --current-index: 0;
+    transition-duration: 1s;
+    margin-left: calc(-100% * var(--current-index));
+}
+
+.action-btns {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: .5rem;
+    gap: 2rem;
+
+    button {
+        padding: 0.5rem 1rem;
+        background: darkblue;
+        color: white;
+        border: none;
+        border-radius: .75rem;
+    }
+    
+    button:disabled {
+        opacity: .75;
+    }
+}
